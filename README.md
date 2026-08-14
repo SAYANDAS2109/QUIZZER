@@ -154,7 +154,7 @@ The current version focuses on the core quiz-generation and RAG functionality, w
 ## 🎥 Live Demo
 
 **Live Demo:**  
-`[(https://quizzer-bw4ourecvspedm6pzkxmfa.streamlit.app/)]`
+`[Live Demo](https://quizzer-bw4ourecvspedm6pzkxmfa.streamlit.app/)`
 
 > Currently unavailable because the deployed Streamlit environment does not provide the Ollama runtime required by the current version.
 
@@ -163,7 +163,7 @@ The current version focuses on the core quiz-generation and RAG functionality, w
 ## 🔗  Links
 
 **LinkedIn:**  
-`https://www.linkedin.com/in/sayan-das-1466b1369/`
+`[LinkedIn](https://www.linkedin.com/in/sayan-das-1466b1369/)`
 
 ---
 
