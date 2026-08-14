@@ -1,135 +1,179 @@
-# 🧠 QUIZZER — AI-Powered Quiz Generator
+# 🧠 QUIZZER
 
-QUIZZER is an AI-powered quiz generation application that creates customized multiple-choice quizzes from any general topic or from user-provided PDF documents.
+An AI-powered quiz generation application built with **Python, Streamlit, Ollama, Gemma 3, LangChain, Hugging Face Embeddings, and ChromaDB**.
 
-It combines Large Language Models, Retrieval-Augmented Generation (RAG), vector embeddings, semantic retrieval, and Streamlit to provide an interactive quiz experience with automatic evaluation and explanations.
-
-## 🚀 Live Demo
-
-**Live Demo:** [(https://quizzer-bw4ourecvspedm6pzkxmfa.streamlit.app/)]
+QUIZZER allows users to generate interactive multiple-choice quizzes either from a general topic using AI or directly from their own PDF documents using a **Retrieval-Augmented Generation (RAG)** pipeline.
 
 ---
 
-## ✨ Features
+## 🚀 Features
 
-### 🎯 AI-Powered Topic Quizzes
+### 🎯 General AI Quiz
 
-- Generate quizzes from any topic or concept.
-- Choose between Easy, Medium, and Hard difficulty.
-- Select 5–30 questions.
-- Generate four-option multiple-choice questions.
-- Automatic answer evaluation.
-- Detailed explanations for every question.
-- Interactive question-by-question quiz interface.
+Generate quizzes on almost any topic using the Gemma 3 model.
 
-### 📚 PDF-Based RAG Quizzes
+- Enter any topic or concept
+- Customize the quiz title
+- Choose difficulty: Easy, Medium, or Hard
+- Generate 5–30 questions
+- Four options per question
+- Automatic answer evaluation
+- Score and accuracy calculation
+- Detailed explanations
+- Topic/concept identification
 
-QUIZZER can generate quizzes directly from user-provided study material.
+### 📚 PDF-Based RAG Quiz
 
-The application supports:
+Generate quizzes from your own study material.
 
-- Uploading multiple PDF documents.
-- Extracting text from PDFs.
-- Splitting documents into meaningful chunks.
-- Generating vector embeddings using Hugging Face.
-- Storing embeddings in ChromaDB.
-- Retrieving relevant document content using Maximal Marginal Relevance (MMR).
-- Generating questions using the retrieved document context.
-- Including source file and page information in generated questions.
-- Preventing the model from relying on outside knowledge for document-based questions.
+Users can upload multiple PDFs such as:
 
-### 📊 Quiz Evaluation
+- Lecture notes
+- Textbooks
+- Research papers
+- Technical documents
+- Exam preparation material
 
-After completing a quiz, users receive:
+The RAG pipeline retrieves relevant information from the uploaded documents before generating questions.
 
-- Total score
-- Accuracy percentage
-- Question-by-question results
-- User's answer
-- Correct answer
+### 📊 Interactive Quiz Interface
+
+- Question-by-question navigation
+- Progress indicator
+- Answer selection
+- Automatic scoring
+- Accuracy calculation
+- Question-wise result review
+- Correct answers
+- Explanations
+- Topic information
+- Source and page information for RAG-generated questions
+
+---
+
+## 🧠 RAG Pipeline
+
+```text
+PDF Upload
+    ↓
+PDF Text Extraction
+    ↓
+Document Chunking
+    ↓
+Hugging Face Embeddings
+    ↓
+ChromaDB Vector Store
+    ↓
+MMR Retrieval
+    ↓
+Relevant Document Chunks
+    ↓
+Gemma 3
+    ↓
+Structured JSON Quiz
+    ↓
+Interactive Quiz
+    ↓
+Results & Explanations
+```
+
+The RAG generator is instructed to use only the retrieved document context when creating questions.
+
+Each RAG-generated question can also contain:
+
+- Tested concept
 - Explanation
+- Source document
+- Page number
+
+This helps keep the generated quiz grounded in the uploaded study material.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- Python
-- Streamlit
-- Ollama
-- Gemma 3 4B
-- LangChain
-- Hugging Face Embeddings
-- ChromaDB
-- PyPDF
+| Technology | Purpose |
+|---|---|
+| Python | Core programming |
+| Streamlit | Web application interface |
+| Ollama | Local LLM runtime |
+| Gemma 3 4B | Quiz generation |
+| LangChain | RAG pipeline |
+| Hugging Face | Text embeddings |
+| ChromaDB | Vector database |
+| PyPDF | PDF processing |
 
 ---
 
-## 🧠 How It Works
+## ☁️ Deployment
 
-For general topic quizzes, the user provides a topic, difficulty, title, and number of questions. The application sends these requirements to the locally running Gemma 3 4B model, which generates a structured JSON quiz that is displayed through the Streamlit interface.
+The current version uses **Ollama + Gemma 3 locally**.
 
-For PDF-based quizzes, the uploaded documents are processed through a RAG pipeline. The PDF text is extracted, split into chunks, converted into embeddings, and stored in ChromaDB. Relevant chunks are retrieved using MMR and passed to Gemma 3 4B as context. The model then generates questions based only on the retrieved document information.
+The application can run successfully in a local environment where Ollama is installed and running.
 
-The complete workflow is:
+However, the current Ollama-based version cannot be directly demonstrated through Streamlit Cloud because Streamlit Cloud does not provide the required Ollama runtime.
 
-User Input → Quiz Configuration → AI/RAG Processing → Quiz Generation → Interactive Quiz → Automatic Evaluation → Results
+A future deployment can solve this by replacing the local Ollama dependency with a cloud-hosted LLM or a separate backend running Ollama.
 
----
+Possible deployment architecture:
 
+```text
+Streamlit Frontend
+        ↓
+Cloud Backend
+        ↓
+LLM / Ollama Server
+        ↓
+Gemma
+```
 
-## 🔍 RAG Pipeline
-
-The PDF quiz generation system follows a Retrieval-Augmented Generation architecture:
-
-PDF Documents → PDF Loader → Text Splitting → Embeddings → ChromaDB → MMR Retrieval → Relevant Context → Gemma 3 4B → Structured Quiz → User Evaluation
-
-This allows QUIZZER to generate questions grounded in the uploaded documents rather than depending entirely on the model's general knowledge.
-
-The retrieval system uses Maximal Marginal Relevance to retrieve relevant and diverse document chunks, helping the generated quiz cover different concepts from the available material.
-
----
-
-## 🎓 Use Cases
-
-QUIZZER can be used for:
-
-- Exam preparation
-- Academic revision
-- Technical interview preparation
-- Textbook-based quizzes
-- Research paper comprehension
-- Lecture note revision
-- Petroleum engineering study
-- General knowledge practice
+Platforms such as Railway or other cloud infrastructure can be considered for hosting the backend.
 
 ---
 
 ## 🔮 Future Improvements
 
-Possible future improvements include:
+Planned improvements may include:
 
-- Personalized question difficulty
-- Improved question diversity
-- Better retrieval optimization
-- Quiz history and performance tracking
-- Additional document formats
-- Faster quiz generation
+- Cloud-based LLM deployment
+- Public live demo
+- User accounts
+- Quiz history
+- Personalized quizzes
+- Timer-based quizzes
 - Performance analytics
-- Improved UI and user experience
+- Improved question validation
+- Advanced retrieval strategies
+- Support for additional document formats
+- AI-powered study recommendations
+
+The current version focuses on the core quiz-generation and RAG functionality, while these improvements can be added in future updates.
+
+---
+
+## 🎥 Live Demo
+
+**Live Demo:**  
+`[(https://quizzer-bw4ourecvspedm6pzkxmfa.streamlit.app/)]`
+
+> Currently unavailable because the deployed Streamlit environment does not provide the Ollama runtime required by the current version.
+
+---
+
+## 🔗  Links
+
+**LinkedIn:**  
+`https://www.linkedin.com/in/sayan-das-1466b1369/`
 
 ---
 
 ## 👨‍💻 Author
 
-Sayan Das
-
+**Sayan Das**  
 B.Tech — Petroleum Engineering  
 IIT (ISM) Dhanbad
-
-LinkedIn: [[LinkedIn Profile](https://www.linkedin.com/in/sayan-das-1466b1369/)]
 
 
 
 ---
 
-⭐ If you find QUIZZER useful, consider giving the repository a star!
