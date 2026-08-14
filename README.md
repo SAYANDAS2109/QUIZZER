@@ -126,7 +126,7 @@ Sayan Das
 B.Tech — Petroleum Engineering  
 IIT (ISM) Dhanbad
 
-LinkedIn: [[Your LinkedIn Profile](https://www.linkedin.com/in/sayan-das-1466b1369/)]
+LinkedIn: [[LinkedIn Profile](https://www.linkedin.com/in/sayan-das-1466b1369/)]
 
 
 
